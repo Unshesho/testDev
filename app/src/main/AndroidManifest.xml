@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Androidlogintest"
         tools:targetApi="31">
         <activity
-            android:name=".session.ui.MainActivity"
+            android:name=".session.login.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Androidlogintest">

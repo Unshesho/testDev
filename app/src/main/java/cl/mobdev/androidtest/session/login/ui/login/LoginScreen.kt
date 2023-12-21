@@ -1,6 +1,5 @@
 package cl.mobdev.androidtest.session.login.ui.login
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,8 +14,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -27,24 +23,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
-import cl.mobdev.androidtest.session.login.ui.navigation.AppScreens
 import cl.mobdev.androidtest.R
 import cl.mobdev.androidtest.session.login.presentation.login.LoginViewModel
+import cl.mobdev.androidtest.session.login.ui.login.components.EmailInputComponent
+import cl.mobdev.androidtest.session.login.ui.login.components.PasswordInputComponent
+import cl.mobdev.androidtest.session.login.ui.navigation.AppScreens
 
-@SuppressLint("UnrememberedMutableState", "SuspiciousIndentation")
 @Composable
 fun LoginScreen(
     loginViewModel: LoginViewModel,
@@ -55,20 +47,20 @@ fun LoginScreen(
     val navigateLoginUser by loginViewModel.navigateToDetails.collectAsState()
     var navigate by remember { mutableStateOf(false) }
 
-    val email by mutableStateOf("")
-    val password by mutableStateOf("")
+    val email = remember { mutableStateOf("") }
+    val password =  remember { mutableStateOf("") }
 
     if (navigateLoginUser && !navigate) {
         navController.navigate(AppScreens.OnBoardingPaymentsReceipts.route)
         navigate = true
     }
-    Column(
+    Column(//TODO: usar Scaffold
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .background(Color.White)
     ) {
-        Image(
+        Image( //TODO: esto se pone en la barra de Scaffold
             painter = painterResource(id = R.drawable.left),
             contentDescription = stringResource(id = R.string.button_back),
             modifier = Modifier
@@ -83,74 +75,10 @@ fun LoginScreen(
                 .padding(top = 30.dp),
             fontSize = 24.dp.value.sp,
         )
-        Text(
-            text = email,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(start = 22.dp)
-                .padding(top = 50.dp)
-        )
-        var email by remember { mutableStateOf(TextFieldValue("")) }
-        TextField(
-            value = email,
-            onValueChange = {
-                email = it
-            },
-            modifier = Modifier
-                .height((50.dp))
-                .padding(start = 22.dp)
-                .padding(end = 22.dp)
-                .fillMaxWidth(),
-            colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Black,
-                unfocusedIndicatorColor = Color.Gray,
-                disabledIndicatorColor = Color.Black,
-                backgroundColor = Color.White
-            ),
-            placeholder = {
-            }
-        )
-        if (loginViewState?.isValidEmail == false) {
-            Text(
-                text = "email",
-                modifier = Modifier.padding(start = 22.dp)
-            )
-        }
 
-        Text(
-            text = password,
-            Modifier
-                .padding(start = 22.dp)
-                .padding(top = 10.dp),
-            fontWeight = FontWeight.Bold
-        )
-        var password by remember { mutableStateOf(TextFieldValue("")) }
-        val passwordVisible = mutableStateOf<Boolean>(false)
-        val visualTransformation = if (passwordVisible.value)
-            VisualTransformation.None
-        else PasswordVisualTransformation()
+        EmailInputComponent(email = email, loginViewState = loginViewState)
 
-        TextField(
-            value = password,
-            onValueChange = {
-                password = it
-            },
-            modifier = Modifier
-                .padding(start = 22.dp)
-                .padding(end = 22.dp)
-                .height((45.dp))
-                .fillMaxWidth(),
-            visualTransformation = visualTransformation,
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                focusedIndicatorColor = Color.Black,
-                unfocusedIndicatorColor = Color.Gray,
-                disabledIndicatorColor = Color.Transparent,
-                backgroundColor = Color.White
-            ),
-            placeholder = {
-            }
-        )
+        PasswordInputComponent(password = password)
 
         if (loginViewState?.isValidPassword == false) {
             Text(
@@ -162,7 +90,7 @@ fun LoginScreen(
 
         if (loginViewState.userNotExist) {
             Text(
-                text = "usuario no existe",
+                text = "usuario no existe",//TODO:usar res
                 modifier = Modifier.padding
                     (start = 22.dp)
             )
@@ -170,11 +98,11 @@ fun LoginScreen(
 
         Row(
             modifier = Modifier
-                .padding(top = 30.dp)
+                .padding(top = 30.dp)//TODO: mandar todo esto a res
                 .padding(start = 125.dp)
                 .background(Color.White)
         ) {
-            ThirdButtonMedium(
+            ThirdButtonMedium(//TODO:revisar esto
                 text = stringResource(id = R.string.start_session),
                 email.text.length > 2 &&
                         password.text.length > 2
@@ -182,7 +110,8 @@ fun LoginScreen(
                 loginViewModel.loginUser(
                     email = email.text,
                     password = password.text,
-                    navController = navController)
+                    navController = navController
+                )
             }
         }
         Row(modifier = Modifier.padding(start = 80.dp)) {

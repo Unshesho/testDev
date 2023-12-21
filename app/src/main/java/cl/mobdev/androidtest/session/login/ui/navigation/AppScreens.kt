@@ -1,6 +1,6 @@
 package cl.mobdev.androidtest.session.login.ui.navigation
 
-sealed class AppScreens(val route: String) {
+sealed class AppScreens(val route: String) {//TODO: Limpiar un chingo de rutas que no se si se usan
     object SplashScreen : AppScreens(SPLASHSCREEN)
     object LoginScreen : AppScreens(LOGINSCREEN)
     object OnBoardingCreateEvent : AppScreens(ONBOARDING_CREATE_EVENT)

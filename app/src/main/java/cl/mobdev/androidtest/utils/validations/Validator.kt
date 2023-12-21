@@ -1,4 +1,4 @@
-package cl.mobdev.androidtest.utils
+package cl.mobdev.androidtest.utils.validations
 
 object Validator {
     fun isValidPassword(password: String): Boolean {

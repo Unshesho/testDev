@@ -1,7 +1,7 @@
 package cl.mobdev.androidtest.network.firebase
 
-import cl.mobdev.androidtest.session.login.presentation.login.LoginResult
-import cl.mobdev.androidtest.session.login.presentation.login.SignInResult
+import cl.mobdev.androidtest.session.login.presentation.login.events.LoginResult
+import cl.mobdev.androidtest.session.login.data.model.SignInResult
 import cl.mobdev.androidtest.session.login.data.cache.SharedPreferencesLogin
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth

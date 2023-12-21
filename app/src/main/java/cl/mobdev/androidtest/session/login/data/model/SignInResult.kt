@@ -1,4 +1,4 @@
-package cl.mobdev.androidtest.session.login.presentation.login
+package cl.mobdev.androidtest.session.login.data.model
 
 import com.google.firebase.auth.AuthResult
 

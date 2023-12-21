@@ -1,4 +1,4 @@
-package cl.mobdev.androidtest.session.login.presentation.login
+package cl.mobdev.androidtest.session.login.presentation.login.events
 
 sealed class LoginResult {
     object Error : LoginResult()

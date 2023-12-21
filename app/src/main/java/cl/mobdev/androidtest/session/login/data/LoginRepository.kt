@@ -5,7 +5,7 @@ import cl.mobdev.androidtest.session.login.data.cache.SharedPreferencesLogin
 import cl.mobdev.androidtest.session.login.data.model.SignResult
 import cl.mobdev.androidtest.session.login.data.remote.model.RemoteSignUpParams
 import cl.mobdev.androidtest.session.login.data.remote.source.LoginRemote
-import cl.mobdev.androidtest.session.login.presentation.login.LoginResult
+import cl.mobdev.androidtest.session.login.presentation.login.events.LoginResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

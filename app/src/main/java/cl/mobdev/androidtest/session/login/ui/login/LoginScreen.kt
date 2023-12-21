@@ -104,12 +104,12 @@ fun LoginScreen(
         ) {
             ThirdButtonMedium(//TODO:revisar esto
                 text = stringResource(id = R.string.start_session),
-                email.text.length > 2 &&
-                        password.text.length > 2
+                email.value.length > 2 &&
+                        password.value.length > 2
             ) {
                 loginViewModel.loginUser(
-                    email = email.text,
-                    password = password.text,
+                    email = email.value,
+                    password = password.value,
                     navController = navController
                 )
             }

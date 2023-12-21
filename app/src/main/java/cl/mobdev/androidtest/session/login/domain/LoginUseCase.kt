@@ -2,7 +2,7 @@ package cl.mobdev.androidtest.session.login.domain
 
 import cl.mobdev.androidtest.session.login.data.LoginRepository
 import cl.mobdev.androidtest.session.login.domain.model.DomainLoginResult
-import cl.mobdev.androidtest.utils.Validator
+import cl.mobdev.androidtest.utils.validations.Validator
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 

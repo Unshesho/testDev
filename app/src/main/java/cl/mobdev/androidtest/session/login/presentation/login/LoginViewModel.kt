@@ -8,6 +8,8 @@ import cl.mobdev.androidtest.session.ConstantsMessages
 import cl.mobdev.androidtest.session.login.data.remote.model.RemoteSignUpResponse
 import cl.mobdev.androidtest.session.login.domain.LoginUseCase
 import cl.mobdev.androidtest.session.login.domain.model.DomainLoginResult
+import cl.mobdev.androidtest.session.login.presentation.login.events.LoginResult
+import cl.mobdev.androidtest.session.login.presentation.login.events.LoginViewState
 import cl.mobdev.androidtest.session.login.presentation.login.model.UserLogin
 import cl.mobdev.androidtest.session.login.ui.navigation.AppScreens
 import kotlinx.coroutines.flow.MutableStateFlow
